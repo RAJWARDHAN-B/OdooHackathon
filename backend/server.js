@@ -7,7 +7,14 @@ const userRoutes = require('./routes/users');
 const swapRoutes = require('./routes/swaps');
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: [
+    'https://skillswap-green-psi.vercel.app',
+    'http://localhost:3000', // For local development
+    'http://localhost:5173'  // For Vite dev server
+  ],
+  credentials: true
+}));
 app.use(express.json());
 
 app.use('/users', userRoutes);
