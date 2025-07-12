@@ -236,7 +236,6 @@ export default function Home() {
           </div>
         )}
       </div>
-    </div>
 
       {/* Swap Request Modal */}
       {showSwapModal && selectedUser && currentUser && (
@@ -247,5 +246,6 @@ export default function Home() {
           currentUser={currentUser}
         />
       )}
+    </div>
   );
 }
