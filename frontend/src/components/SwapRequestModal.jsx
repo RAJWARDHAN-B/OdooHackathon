@@ -88,7 +88,7 @@ function SwapRequestModal({ isOpen, onClose, targetUser, currentUser }) {
                     className="w-10 h-10 rounded-full object-cover"
                   />
                 ) : (
-                  <span className="text-lg font-bold text-[#00a09d]">
+                  <span className="text-lg font-bold text-white">
                     {targetUser.name.charAt(0).toUpperCase()}
                   </span>
                 )}
@@ -109,7 +109,7 @@ function SwapRequestModal({ isOpen, onClose, targetUser, currentUser }) {
               required
               value={form.skillOffered}
               onChange={(e) => setForm({ ...form, skillOffered: e.target.value })}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00a09d] focus:border-transparent transition-all duration-200"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-white focus:border-transparent transition-all duration-200"
             >
               <option value="">Select a skill you can offer</option>
               {currentUser.skillsOffered && currentUser.skillsOffered.length > 0 ? (
@@ -137,7 +137,7 @@ function SwapRequestModal({ isOpen, onClose, targetUser, currentUser }) {
               required
               value={form.skillRequested}
               onChange={(e) => setForm({ ...form, skillRequested: e.target.value })}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00a09d] focus:border-transparent transition-all duration-200"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-white focus:border-transparent transition-all duration-200"
             >
               <option value="">Select a skill you want to learn</option>
               {targetUser.skillsOffered?.map((skill) => (
@@ -154,7 +154,7 @@ function SwapRequestModal({ isOpen, onClose, targetUser, currentUser }) {
               value={form.message}
               onChange={(e) => setForm({ ...form, message: e.target.value })}
               rows={3}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00a09d] focus:border-transparent transition-all duration-200"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-white focus:border-transparent transition-all duration-200"
               placeholder="Add a personal message to your request..."
             />
           </div>

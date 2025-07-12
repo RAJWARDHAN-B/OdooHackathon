@@ -190,7 +190,7 @@ export default function Home() {
                         <h4 className="font-medium text-gray-900 mb-2">Skills Offered</h4>
                         <div className="flex flex-wrap gap-2">
                           {user.skillsOffered?.map((skill, idx) => (
-                            <span key={idx} className="bg-[#00a09d] bg-opacity-10 text-[#00a09d] px-3 py-1 rounded-full text-sm font-medium hover-lift">
+                            <span key={idx} className="bg-[#00a09d] text-white px-3 py-1 rounded-full text-sm font-medium hover-lift">
                               {skill}
                             </span>
                           )) || <span className="text-gray-500 text-sm">No skills offered</span>}
@@ -201,7 +201,7 @@ export default function Home() {
                         <h4 className="font-medium text-gray-900 mb-2">Skills Wanted</h4>
                         <div className="flex flex-wrap gap-2">
                           {user.skillsWanted?.map((skill, idx) => (
-                            <span key={idx} className="bg-[#ff5722] bg-opacity-10 text-[#ff5722] px-3 py-1 rounded-full text-sm font-medium hover-lift">
+                            <span key={idx} className="bg-[#ff5722] text-white px-3 py-1 rounded-full text-sm font-medium hover-lift">
                               {skill}
                             </span>
                           )) || <span className="text-gray-500 text-sm">No skills wanted</span>}
@@ -212,16 +212,16 @@ export default function Home() {
                           <h4 className="font-medium text-gray-900 mb-2">Availability</h4>
                           <div className="flex flex-wrap gap-2">
                             {user.availability?.weekends && (
-                              <span className="bg-[#6c757d] bg-opacity-10 text-[#6c757d] px-3 py-1 rounded-full text-sm hover-lift">Weekends</span>
+                              <span className="bg-[#6c757d] text-white px-3 py-1 rounded-full text-sm hover-lift">Weekends</span>
                             )}
                             {user.availability?.evenings && (
-                              <span className="bg-[#6c757d] bg-opacity-10 text-[#6c757d] px-3 py-1 rounded-full text-sm hover-lift">Evenings</span>
+                              <span className="bg-[#6c757d] text-white px-3 py-1 rounded-full text-sm hover-lift">Evenings</span>
                             )}
                             {user.availability?.weekdays && (
-                              <span className="bg-[#6c757d] bg-opacity-10 text-[#6c757d] px-3 py-1 rounded-full text-sm hover-lift">Weekdays</span>
+                              <span className="bg-[#6c757d] text-white px-3 py-1 rounded-full text-sm hover-lift">Weekdays</span>
                             )}
                             {user.availability?.custom && (
-                              <span className="bg-[#6c757d] bg-opacity-10 text-[#6c757d] px-3 py-1 rounded-full text-sm hover-lift">
+                              <span className="bg-[#6c757d] text-white px-3 py-1 rounded-full text-sm hover-lift">
                                 {user.availability.custom}
                               </span>
                             )}

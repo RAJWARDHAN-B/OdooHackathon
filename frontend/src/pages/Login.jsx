@@ -202,8 +202,8 @@ export default function Login() {
             </div>
 
             <div className="mt-6 bg-[#00a09d] bg-opacity-10 p-4 rounded-md animate-fade-in">
-              <h3 className="text-sm font-medium text-[#00a09d] mb-2">For Demo Purposes:</h3>
-              <ul className="text-sm text-[#00a09d] space-y-1">
+              <h3 className="text-sm font-medium text-white mb-2">For Demo Purposes:</h3>
+              <ul className="text-sm text-white space-y-1">
                 <li>• Use any email and password to login</li>
                 <li>• Click "Demo Login" to skip authentication</li>
                 <li>• Create profiles and test the skill swap functionality</li>
