@@ -54,7 +54,11 @@ export default function Login() {
       }
     } catch (err) {
       console.error('Login error:', err);
-      setError('Login failed. Please check your credentials.');
+      if (err.response && err.response.data && err.response.data.error) {
+        setError(err.response.data.error);
+      } else {
+        setError('Login failed. Please check your credentials.');
+      }
     } finally {
       setLoading(false);
     }
@@ -66,6 +70,7 @@ export default function Login() {
       const demoUserData = {
         name: 'Demo User',
         email: 'demo@example.com',
+        password: 'demopassword', // Added password field
         location: 'Demo City',
         skillsOffered: ['JavaScript', 'React', 'Node.js', 'Python'],
         skillsWanted: ['C++', 'Java', 'Machine Learning'],
