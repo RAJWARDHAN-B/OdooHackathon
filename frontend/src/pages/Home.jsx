@@ -3,12 +3,27 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 export default function Home() {
-  const [profiles, setProfiles] = useState([]);
+  const [profiles, setProfiles] = useState([]); // Default to an empty array
   const [search, setSearch] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get('/api/profiles?public=true').then((res) => setProfiles(res.data));
+    axios
+      .get('/api/profiles?public=true')
+      .then((res) => {
+        console.log(res.data); // Log the response to check the structure
+
+        // Ensure the response data is an array
+        if (Array.isArray(res.data)) {
+          setProfiles(res.data);
+        } else {
+          console.error('Expected an array but got:', res.data);
+          
+        }
+      })
+      .catch((error) => {
+        console.error('Error fetching profiles:', error);
+      });
   }, []);
 
   const handleRequest = (id) => {
@@ -34,9 +49,16 @@ export default function Home() {
       </div>
       <div className="grid gap-4">
         {profiles
-          .filter((p) =>
-            p.skillsOffered.join(',').toLowerCase().includes(search.toLowerCase()) ||
-            p.skillsWanted.join(',').toLowerCase().includes(search.toLowerCase())
+          .filter(
+            (p) =>
+              p.skillsOffered
+                .join(',')
+                .toLowerCase()
+                .includes(search.toLowerCase()) ||
+              p.skillsWanted
+                .join(',')
+                .toLowerCase()
+                .includes(search.toLowerCase())
           )
           .map((profile) => (
             <div key={profile.id} className="border p-4 rounded shadow">
