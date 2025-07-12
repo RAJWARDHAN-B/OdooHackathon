@@ -32,8 +32,8 @@ export default function Login() {
             email: email,
             password: password,
             location: 'Unknown',
-            skillsOffered: [],
-            skillsWanted: [],
+            skillsOffered: ['JavaScript', 'React', 'Node.js', 'Python'], // Default skills
+            skillsWanted: ['C++', 'Java', 'Machine Learning'], // Default wanted skills
             availability: {
               weekends: false,
               evenings: false,

@@ -10,8 +10,7 @@ function Navbar() {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('currentUserId');
-    localStorage.removeItem('currentUser');
+    localStorage.clear(); // Clear all localStorage data
     window.location.href = '/';
   };
 
