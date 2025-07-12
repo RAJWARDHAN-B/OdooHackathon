@@ -15,38 +15,91 @@ export default function Login() {
     setError('');
 
     try {
-      // For demo purposes, we'll use a simple login system
-      // In a real app, you'd have proper authentication
       if (email && password) {
-        // Mock successful login
-        const mockUser = {
-          _id: 'demo-user-id',
-          name: email.split('@')[0],
-          email: email
-        };
+        // Try to find existing user by email
+        const response = await api.get('/users');
+        const existingUser = response.data.find(user => user.email === email);
         
-        localStorage.setItem('currentUserId', mockUser._id);
-        localStorage.setItem('currentUser', JSON.stringify(mockUser));
-        
-        navigate('/');
+        if (existingUser) {
+          // User exists, use their data
+          localStorage.setItem('currentUserId', existingUser._id);
+          localStorage.setItem('currentUser', JSON.stringify(existingUser));
+          navigate('/');
+        } else {
+          // Create new user
+          const newUserData = {
+            name: email.split('@')[0],
+            email: email,
+            password: password,
+            location: 'Unknown',
+            skillsOffered: [],
+            skillsWanted: [],
+            availability: {
+              weekends: false,
+              evenings: false,
+              weekdays: false
+            }
+          };
+
+          const createResponse = await api.post('/users', newUserData);
+          const newUser = createResponse.data;
+          
+          localStorage.setItem('currentUserId', newUser._id);
+          localStorage.setItem('currentUser', JSON.stringify(newUser));
+          
+          navigate('/');
+        }
       } else {
         setError('Please enter both email and password');
       }
     } catch (err) {
+      console.error('Login error:', err);
       setError('Login failed. Please check your credentials.');
     } finally {
       setLoading(false);
     }
   };
 
-  const handleDemoLogin = () => {
-    localStorage.setItem('currentUserId', 'demo-user-id');
-    localStorage.setItem('currentUser', JSON.stringify({
-      _id: 'demo-user-id',
-      name: 'Demo User',
-      email: 'demo@example.com'
-    }));
-    navigate('/');
+  const handleDemoLogin = async () => {
+    try {
+      // Create a demo user in the database
+      const demoUserData = {
+        name: 'Demo User',
+        email: 'demo@example.com',
+        location: 'Demo City',
+        skillsOffered: ['JavaScript', 'React', 'Node.js', 'Python'],
+        skillsWanted: ['C++', 'Java', 'Machine Learning'],
+        availability: {
+          weekends: true,
+          evenings: true,
+          weekdays: false
+        }
+      };
+
+      const response = await api.post('/users', demoUserData);
+      const demoUser = response.data;
+
+      localStorage.setItem('currentUserId', demoUser._id);
+      localStorage.setItem('currentUser', JSON.stringify(demoUser));
+      
+      navigate('/');
+    } catch (error) {
+      console.error('Demo login error:', error);
+      // If user already exists, try to get them
+      try {
+        const response = await api.get('/users');
+        const existingUser = response.data.find(user => user.email === 'demo@example.com');
+        if (existingUser) {
+          localStorage.setItem('currentUserId', existingUser._id);
+          localStorage.setItem('currentUser', JSON.stringify(existingUser));
+          navigate('/');
+        } else {
+          setError('Failed to create demo user');
+        }
+      } catch (getError) {
+        setError('Failed to setup demo user');
+      }
+    }
   };
 
   return (

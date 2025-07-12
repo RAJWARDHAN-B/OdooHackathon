@@ -50,27 +50,30 @@ export default function Home() {
 
   const handleRequest = (user) => {
     const currentUserId = localStorage.getItem('currentUserId');
-    if (!currentUserId) {
+    const currentUserData = localStorage.getItem('currentUser');
+    
+    if (!currentUserId || !currentUserData) {
       navigate('/login');
       return;
     }
 
-    // For now, we'll use a mock current user. In a real app, you'd fetch this from the API
-    const mockCurrentUser = {
-      _id: currentUserId,
-      name: 'Current User',
-      skillsOffered: ['JavaScript', 'React', 'Node.js', 'Python']
-    };
-    
-    // Validate that we have valid user IDs
-    if (!mockCurrentUser._id || !user._id) {
-      setError('Invalid user data');
-      return;
+    try {
+      const currentUser = JSON.parse(currentUserData);
+      
+      // Validate that we have valid user IDs
+      if (!currentUser._id || !user._id) {
+        setError('Invalid user data');
+        return;
+      }
+      
+      setCurrentUser(currentUser);
+      setSelectedUser(user);
+      setShowSwapModal(true);
+    } catch (error) {
+      console.error('Error parsing current user data:', error);
+      setError('Invalid user session');
+      navigate('/login');
     }
-    
-    setCurrentUser(mockCurrentUser);
-    setSelectedUser(user);
-    setShowSwapModal(true);
   };
 
   const filteredUsers = users.filter(user => 
