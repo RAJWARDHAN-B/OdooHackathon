@@ -2,6 +2,12 @@
 
 A modern web application that enables users to list their skills and request skill swaps with others. Built with React, Node.js, MongoDB, and integrated with Odoo.
 
+## 🚀 Deployed Application
+
+You can access the live version of the application here:  
+👉 [View Deployed App](https://skillswap-green-psi.vercel.app/)
+
+
 ## 🚀 Features
 
 ### Core Functionality
