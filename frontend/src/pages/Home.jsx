@@ -85,9 +85,9 @@ export default function Home() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+      <div className="min-h-screen bg-[#f8f9fa] flex items-center justify-center">
+        <div className="text-center animate-fade-in">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#00a09d] mx-auto"></div>
           <p className="mt-4 text-gray-600">Loading users...</p>
         </div>
       </div>
@@ -96,27 +96,27 @@ export default function Home() {
 
   return (
     <>
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-[#f8f9fa]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="text-center mb-8">
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">Skill Swap Platform</h1>
+          <div className="text-center mb-8 animate-fade-in">
+            <h1 className="text-4xl font-bold text-gray-900 mb-4 animate-slide-in">Skill Swap Platform</h1>
             <p className="text-xl text-gray-600">Connect with people who can teach you new skills</p>
           </div>
 
           {/* Search Section */}
-          <div className="bg-white rounded-lg shadow-md p-6 mb-8">
+          <div className="bg-white rounded-lg shadow-md p-6 mb-8 animate-fade-in hover-lift">
             <div className="flex gap-4">
               <input
                 type="text"
                 placeholder="Search by name, location, or skills..."
-                className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00a09d] focus:border-transparent transition-all duration-200"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
               />
               <button
                 onClick={handleSearch}
-                className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                className="px-6 py-2 bg-[#00a09d] text-white rounded-lg hover:bg-[#008784] transition-all duration-200 hover-lift"
               >
                 Search
               </button>
@@ -126,7 +126,7 @@ export default function Home() {
                     setSearch('');
                     fetchUsers();
                   }}
-                  className="px-4 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 transition-colors"
+                  className="px-4 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 transition-all duration-200 hover-lift"
                 >
                   Clear
                 </button>
@@ -135,30 +135,34 @@ export default function Home() {
           </div>
 
           {error && (
-            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6">
+            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6 animate-fade-in">
               {error}
             </div>
           )}
 
           {/* Users Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredUsers.map((user) => (
-              <div key={user._id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+            {filteredUsers.map((user, index) => (
+              <div 
+                key={user._id} 
+                className="bg-white rounded-lg shadow-md overflow-hidden hover-lift animate-fade-in"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
                 <div className="p-6">
-                  <div className="flex items-center mb-4">
-                    <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mr-4">
-                      {user.profilePhoto ? (
-                        <img 
-                          src={user.profilePhoto} 
-                          alt={user.name}
-                          className="w-16 h-16 rounded-full object-cover"
-                        />
-                      ) : (
-                        <span className="text-2xl font-bold text-blue-600">
-                          {user.name.charAt(0).toUpperCase()}
-                        </span>
-                      )}
-                    </div>
+                                      <div className="flex items-center mb-4">
+                      <div className="w-16 h-16 bg-[#00a09d] bg-opacity-10 rounded-full flex items-center justify-center mr-4 hover-lift">
+                        {user.profilePhoto ? (
+                          <img 
+                            src={user.profilePhoto} 
+                            alt={user.name}
+                            className="w-16 h-16 rounded-full object-cover"
+                          />
+                        ) : (
+                          <span className="text-2xl font-bold text-[#00a09d]">
+                            {user.name.charAt(0).toUpperCase()}
+                          </span>
+                        )}
+                      </div>
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900">{user.name}</h3>
                       <p className="text-sm text-gray-600">{user.location || 'Location not specified'}</p>
@@ -182,56 +186,56 @@ export default function Home() {
                   </div>
 
                   <div className="space-y-4">
-                    <div>
-                      <h4 className="font-medium text-gray-900 mb-2">Skills Offered</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {user.skillsOffered?.map((skill, idx) => (
-                          <span key={idx} className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
-                            {skill}
-                          </span>
-                        )) || <span className="text-gray-500 text-sm">No skills offered</span>}
+                                          <div>
+                        <h4 className="font-medium text-gray-900 mb-2">Skills Offered</h4>
+                        <div className="flex flex-wrap gap-2">
+                          {user.skillsOffered?.map((skill, idx) => (
+                            <span key={idx} className="bg-[#00a09d] bg-opacity-10 text-[#00a09d] px-3 py-1 rounded-full text-sm font-medium hover-lift">
+                              {skill}
+                            </span>
+                          )) || <span className="text-gray-500 text-sm">No skills offered</span>}
+                        </div>
                       </div>
-                    </div>
 
-                    <div>
-                      <h4 className="font-medium text-gray-900 mb-2">Skills Wanted</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {user.skillsWanted?.map((skill, idx) => (
-                          <span key={idx} className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">
-                            {skill}
-                          </span>
-                        )) || <span className="text-gray-500 text-sm">No skills wanted</span>}
+                      <div>
+                        <h4 className="font-medium text-gray-900 mb-2">Skills Wanted</h4>
+                        <div className="flex flex-wrap gap-2">
+                          {user.skillsWanted?.map((skill, idx) => (
+                            <span key={idx} className="bg-[#ff5722] bg-opacity-10 text-[#ff5722] px-3 py-1 rounded-full text-sm font-medium hover-lift">
+                              {skill}
+                            </span>
+                          )) || <span className="text-gray-500 text-sm">No skills wanted</span>}
+                        </div>
                       </div>
-                    </div>
 
-                    <div>
-                      <h4 className="font-medium text-gray-900 mb-2">Availability</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {user.availability?.weekends && (
-                          <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">Weekends</span>
-                        )}
-                        {user.availability?.evenings && (
-                          <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">Evenings</span>
-                        )}
-                        {user.availability?.weekdays && (
-                          <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">Weekdays</span>
-                        )}
-                        {user.availability?.custom && (
-                          <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">
-                            {user.availability.custom}
-                          </span>
-                        )}
-                        {!user.availability?.weekends && !user.availability?.evenings && 
-                         !user.availability?.weekdays && !user.availability?.custom && (
-                          <span className="text-gray-500 text-sm">Availability not specified</span>
-                        )}
-                      </div>
-                    </div>
+                                            <div>
+                          <h4 className="font-medium text-gray-900 mb-2">Availability</h4>
+                          <div className="flex flex-wrap gap-2">
+                            {user.availability?.weekends && (
+                              <span className="bg-[#6c757d] bg-opacity-10 text-[#6c757d] px-3 py-1 rounded-full text-sm hover-lift">Weekends</span>
+                            )}
+                            {user.availability?.evenings && (
+                              <span className="bg-[#6c757d] bg-opacity-10 text-[#6c757d] px-3 py-1 rounded-full text-sm hover-lift">Evenings</span>
+                            )}
+                            {user.availability?.weekdays && (
+                              <span className="bg-[#6c757d] bg-opacity-10 text-[#6c757d] px-3 py-1 rounded-full text-sm hover-lift">Weekdays</span>
+                            )}
+                            {user.availability?.custom && (
+                              <span className="bg-[#6c757d] bg-opacity-10 text-[#6c757d] px-3 py-1 rounded-full text-sm hover-lift">
+                                {user.availability.custom}
+                              </span>
+                            )}
+                            {!user.availability?.weekends && !user.availability?.evenings && 
+                             !user.availability?.weekdays && !user.availability?.custom && (
+                              <span className="text-gray-500 text-sm">Availability not specified</span>
+                            )}
+                          </div>
+                        </div>
                   </div>
 
                   <button
                     onClick={() => handleRequest(user)}
-                    className="w-full mt-6 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors font-medium"
+                    className="w-full mt-6 bg-[#00a09d] text-white py-2 px-4 rounded-lg hover:bg-[#008784] transition-all duration-200 hover-lift font-medium"
                   >
                     Request Skill Swap
                   </button>

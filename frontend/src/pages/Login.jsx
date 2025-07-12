@@ -108,26 +108,26 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-[#f8f9fa] flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="flex justify-center">
-          <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center">
+          <div className="w-12 h-12 bg-[#00a09d] rounded-lg flex items-center justify-center animate-pulse-slow">
             <span className="text-white font-bold text-xl">S</span>
           </div>
         </div>
-        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900 animate-fade-in">
           Sign in to SkillSwap
         </h2>
-        <p className="mt-2 text-center text-sm text-gray-600">
+        <p className="mt-2 text-center text-sm text-gray-600 animate-fade-in">
           Connect with people who can teach you new skills
         </p>
       </div>
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+        <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10 animate-fade-in hover-lift">
           <form onSubmit={handleLogin} className="space-y-6">
             {error && (
-              <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+              <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded animate-fade-in">
                 {error}
               </div>
             )}
@@ -145,7 +145,7 @@ export default function Login() {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-[#00a09d] focus:border-[#00a09d] sm:text-sm transition-all duration-200"
                   placeholder="Enter your email"
                 />
               </div>
@@ -164,7 +164,7 @@ export default function Login() {
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-[#00a09d] focus:border-[#00a09d] sm:text-sm transition-all duration-200"
                   placeholder="Enter your password"
                 />
               </div>
@@ -174,7 +174,7 @@ export default function Login() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:bg-gray-400"
+                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-[#00a09d] hover:bg-[#008784] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#00a09d] disabled:bg-gray-400 transition-all duration-200 hover-lift"
               >
                 {loading ? 'Signing in...' : 'Sign in'}
               </button>
@@ -184,7 +184,7 @@ export default function Login() {
               <button
                 type="button"
                 onClick={handleDemoLogin}
-                className="w-full flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                className="w-full flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#00a09d] transition-all duration-200 hover-lift"
               >
                 Demo Login (Skip Authentication)
               </button>
@@ -201,9 +201,9 @@ export default function Login() {
               </div>
             </div>
 
-            <div className="mt-6 bg-blue-50 p-4 rounded-md">
-              <h3 className="text-sm font-medium text-blue-800 mb-2">For Demo Purposes:</h3>
-              <ul className="text-sm text-blue-700 space-y-1">
+            <div className="mt-6 bg-[#00a09d] bg-opacity-10 p-4 rounded-md animate-fade-in">
+              <h3 className="text-sm font-medium text-[#00a09d] mb-2">For Demo Purposes:</h3>
+              <ul className="text-sm text-[#00a09d] space-y-1">
                 <li>• Use any email and password to login</li>
                 <li>• Click "Demo Login" to skip authentication</li>
                 <li>• Create profiles and test the skill swap functionality</li>

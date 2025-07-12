@@ -59,8 +59,8 @@ function SwapRequestModal({ isOpen, onClose, targetUser, currentUser }) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg p-8 max-w-md w-full mx-4 max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 animate-fade-in">
+      <div className="bg-white rounded-lg p-8 max-w-md w-full mx-4 max-h-[90vh] overflow-y-auto animate-fade-in hover-lift">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-bold text-gray-900">Request Skill Swap</h2>
           <button
@@ -72,27 +72,27 @@ function SwapRequestModal({ isOpen, onClose, targetUser, currentUser }) {
         </div>
 
         {error && (
-          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4 animate-fade-in">
             {error}
           </div>
         )}
 
-        <div className="mb-6">
-          <h3 className="font-medium text-gray-900 mb-2">Swapping with:</h3>
-          <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-            <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-              {targetUser.profilePhoto ? (
-                <img 
-                  src={targetUser.profilePhoto} 
-                  alt={targetUser.name}
-                  className="w-10 h-10 rounded-full object-cover"
-                />
-              ) : (
-                <span className="text-lg font-bold text-blue-600">
-                  {targetUser.name.charAt(0).toUpperCase()}
-                </span>
-              )}
-            </div>
+                  <div className="mb-6">
+            <h3 className="font-medium text-gray-900 mb-2">Swapping with:</h3>
+            <div className="flex items-center gap-3 p-3 bg-[#f8f9fa] rounded-lg hover-lift">
+              <div className="w-10 h-10 bg-[#00a09d] bg-opacity-10 rounded-full flex items-center justify-center">
+                {targetUser.profilePhoto ? (
+                  <img 
+                    src={targetUser.profilePhoto} 
+                    alt={targetUser.name}
+                    className="w-10 h-10 rounded-full object-cover"
+                  />
+                ) : (
+                  <span className="text-lg font-bold text-[#00a09d]">
+                    {targetUser.name.charAt(0).toUpperCase()}
+                  </span>
+                )}
+              </div>
             <div>
               <p className="font-medium">{targetUser.name}</p>
               <p className="text-sm text-gray-600">{targetUser.location}</p>
@@ -109,7 +109,7 @@ function SwapRequestModal({ isOpen, onClose, targetUser, currentUser }) {
               required
               value={form.skillOffered}
               onChange={(e) => setForm({ ...form, skillOffered: e.target.value })}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00a09d] focus:border-transparent transition-all duration-200"
             >
               <option value="">Select a skill you can offer</option>
               {currentUser.skillsOffered && currentUser.skillsOffered.length > 0 ? (
@@ -137,7 +137,7 @@ function SwapRequestModal({ isOpen, onClose, targetUser, currentUser }) {
               required
               value={form.skillRequested}
               onChange={(e) => setForm({ ...form, skillRequested: e.target.value })}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00a09d] focus:border-transparent transition-all duration-200"
             >
               <option value="">Select a skill you want to learn</option>
               {targetUser.skillsOffered?.map((skill) => (
@@ -154,7 +154,7 @@ function SwapRequestModal({ isOpen, onClose, targetUser, currentUser }) {
               value={form.message}
               onChange={(e) => setForm({ ...form, message: e.target.value })}
               rows={3}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00a09d] focus:border-transparent transition-all duration-200"
               placeholder="Add a personal message to your request..."
             />
           </div>
@@ -163,14 +163,14 @@ function SwapRequestModal({ isOpen, onClose, targetUser, currentUser }) {
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 px-4 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 transition-colors"
+              className="flex-1 px-4 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 transition-all duration-200 hover-lift"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={loading}
-              className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:bg-gray-400"
+              className="flex-1 px-4 py-2 bg-[#00a09d] text-white rounded-lg hover:bg-[#008784] transition-all duration-200 hover-lift disabled:bg-gray-400"
             >
               {loading ? 'Sending...' : 'Send Request'}
             </button>
