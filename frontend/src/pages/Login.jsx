@@ -40,9 +40,11 @@ export default function Login() {
   };
 
   const handleDemoLogin = () => {
-    localStorage.setItem('currentUserId', 'demo-user-id');
+    // Paste your real user's ObjectId from MongoDB Atlas below:
+    const realDemoUserId = '6872462d1bbe126926c1bc4b';
+    localStorage.setItem('currentUserId', realDemoUserId);
     localStorage.setItem('currentUser', JSON.stringify({
-      _id: 'demo-user-id',
+      _id: realDemoUserId,
       name: 'Demo User',
       email: 'demo@example.com'
     }));
