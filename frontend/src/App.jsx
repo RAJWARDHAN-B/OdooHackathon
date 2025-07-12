@@ -20,15 +20,15 @@ return (
 
 export default App
 
-function App() {
-  return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/profile/:id" element={<Profile />} />
-      <Route path="/my-profile" element={<MyProfile />} />
-      <Route path="/swap-requests" element={<SwapRequest />} />
-      <Route path="/admin" element={<Admin />} />
-    </Routes>
-  );
-}
+// function App() {
+//   return (
+//     <Routes>
+//       <Route path="/" element={<Home />} />
+//       <Route path="/login" element={<Login />} />
+//       <Route path="/profile/:id" element={<Profile />} />
+//       <Route path="/my-profile" element={<MyProfile />} />
+//       <Route path="/swap-requests" element={<SwapRequest />} />
+//       <Route path="/admin" element={<Admin />} />
+//     </Routes>
+//   );
+// }
