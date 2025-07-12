@@ -112,9 +112,20 @@ function SwapRequestModal({ isOpen, onClose, targetUser, currentUser }) {
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             >
               <option value="">Select a skill you can offer</option>
-              {currentUser.skillsOffered?.map((skill) => (
-                <option key={skill} value={skill}>{skill}</option>
-              ))}
+              {currentUser.skillsOffered && currentUser.skillsOffered.length > 0 ? (
+                currentUser.skillsOffered.map((skill) => (
+                  <option key={skill} value={skill}>{skill}</option>
+                ))
+              ) : (
+                <>
+                  <option value="JavaScript">JavaScript</option>
+                  <option value="React">React</option>
+                  <option value="Node.js">Node.js</option>
+                  <option value="Python">Python</option>
+                  <option value="HTML/CSS">HTML/CSS</option>
+                  <option value="SQL">SQL</option>
+                </>
+              )}
             </select>
           </div>
 
