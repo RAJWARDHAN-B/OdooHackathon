@@ -9,6 +9,9 @@ router.post('/', async (req, res) => {
     const saved = await user.save();
     res.status(201).json(saved);
   } catch (error) {
+    if (error.code === 11000 && error.keyPattern && error.keyPattern.email) {
+      return res.status(400).json({ error: 'Email already registered' });
+    }
     res.status(400).json({ error: error.message });
   }
 });
