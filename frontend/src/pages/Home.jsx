@@ -62,6 +62,12 @@ export default function Home() {
       skillsOffered: ['JavaScript', 'React', 'Node.js', 'Python']
     };
     
+    // Validate that we have valid user IDs
+    if (!mockCurrentUser._id || !user._id) {
+      setError('Invalid user data');
+      return;
+    }
+    
     setCurrentUser(mockCurrentUser);
     setSelectedUser(user);
     setShowSwapModal(true);

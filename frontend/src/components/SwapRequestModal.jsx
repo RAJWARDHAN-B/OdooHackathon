@@ -42,11 +42,14 @@ function SwapRequestModal({ isOpen, onClose, targetUser, currentUser }) {
         message: form.message
       };
 
+      console.log('Sending swap data:', swapData); // Debug log
+
       await api.post('/swaps', swapData);
       onClose();
       // You might want to show a success message or redirect
       window.location.reload(); // Simple refresh for now
     } catch (error) {
+      console.error('Swap creation error:', error.response?.data || error.message);
       setError(error.response?.data?.error || 'Failed to create swap request');
     } finally {
       setLoading(false);

@@ -1,13 +1,22 @@
 const mongoose = require('mongoose');
 
-// Update the URI if your MongoDB is not local or uses a different database name
-const uri = 'mongodb://localhost:27017/test';
+// Update the URI to use the correct database name
+const uri = 'mongodb://localhost:27017/skillswap';
 
-mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(uri);
 
 mongoose.connection.once('open', async () => {
   try {
     console.log('Connected to MongoDB');
+    
+    // Check if the users collection exists
+    const collections = await mongoose.connection.db.listCollections().toArray();
+    const usersCollectionExists = collections.some(col => col.name === 'users');
+    
+    if (!usersCollectionExists) {
+      console.log('Users collection does not exist yet. No indexes to clean up.');
+      return;
+    }
     
     const indexes = await mongoose.connection.db.collection('users').indexes();
     console.log('Current indexes:', indexes.map(idx => idx.name));
